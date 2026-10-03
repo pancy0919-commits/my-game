@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的線上打字筆記本</title>
+    <title>我的神秘記事本</title>
     <style>
         body {
             background: #fdf6e2;
@@ -31,7 +31,6 @@
             margin-top: 0;
             margin-bottom: 15px;
         }
-        /* 這邊就是讓你可以打字的大框框樣式 */
         textarea {
             width: 100%;
             height: 250px;
@@ -47,13 +46,43 @@
             border-color: #e76f51;
             outline: none;
         }
+        /* 彩蛋跳出來時的文字樣式 */
+        #easter-egg {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #e8f4f8;
+            color: #2a9d8f;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 1px dashed #2a9d8f;
+        }
     </style>
 </head>
 <body>
     <div class="notebook">
-        <h1>我的隨身打字本</h1>
-        <!-- 這個標籤就是打字輸入框 -->
-        <textarea placeholder="點這裡就可以直接開始打字囉..."></textarea>
+        <h1>我的隨身筆記本</h1>
+        <!-- 記事本打字框 -->
+        <textarea id="myNote" placeholder="點這裡就可以直接開始打字囉..."></textarea>
+        <!-- 隱藏的彩蛋訊息 (平常看不到，密碼對了就會浮現) -->
+        <div id="easter-egg">🎉 恭喜你解開了隱藏彩蛋！你發現了這段神祕的故事秘密……</div>
     </div>
+
+    <script>
+        const noteBox = document.getElementById('myNote');
+        const eggBox = document.getElementById('easter-egg');
+
+        // 這裡設定你的神秘密碼！目前設定成 "secret"（你可以自己改掉）
+        const secretPassword = "131313"; 
+
+        noteBox.addEventListener('input', function() {
+            // 如果你在記事本裡打的字包含了這串密碼
+            if (noteBox.value.includes(secretPassword)) {
+                eggBox.style.display = 'block'; // 顯示彩蛋
+            } else {
+                eggBox.style.display = 'none';  // 沒打密碼就隱藏
+            }
+        });
+    </script>
 </body>
 </html>
